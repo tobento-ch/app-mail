@@ -11,6 +11,7 @@ Mail support for the app using the [Mail Service](https://github.com/tobento-ch/
     - [Mail Boot](#mail-boot)
         - [Mail Config](#mail-config)
         - [Creating And Sending Messages](#creating-and-sending-messages)
+        - [Message Templating](#message-templating)
         - [Queuing Messages](#queuing-messages)
 - [Credits](#credits)
 ___
@@ -113,6 +114,12 @@ class SomeService
 ```
 
 Check out the [Mail Service - Creating And Sending Messages](https://github.com/tobento-ch/service-mail#creating-and-sending-messages) section to learn more about it.
+
+### Message Templating
+
+The [Mail Boot](#mail-boot) automatically boots the [App View Boot](https://github.com/tobento-ch/app-view#view-boot) to support message templates out of the box.
+
+Read more about templating in the [Mail Service - Templating](https://github.com/tobento-ch/service-mail#templating) section.
 
 ### Queuing Messages
 
