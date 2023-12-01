@@ -242,4 +242,38 @@ class MailTest extends TestCase
         $this->assertStringContainsString('From: FromName <from@example.com>', $emailString);
         $this->assertStringContainsString('Return-Path: <return@example.com>', $emailString);
     }
+    
+    public function testMessageTemplates()
+    {
+        $app = $this->createApp();
+        
+        // we use the tests views from the mail service.
+        $app->dirs()->dir(
+            dir: $app->dir('vendor').'tobento/service-mail/tests/views/',
+            name: 'theme',
+            group: 'views',
+            priority: 500,
+        );
+        
+        $app->boot(Mail::class);
+        $app->booting();
+        
+        $renderer = $app->get(RendererInterface::class);
+        
+        $message = (new Message())
+            ->to('to@example.com')
+            ->subject('Subject')
+            ->textTemplate('welcome-text', ['name' => 'John'])
+            ->htmlTemplate('welcome', ['name' => 'John']);
+        
+        $this->assertSame(
+            'Welcome, John',
+            $renderer->renderTemplate($message->getText())
+        );
+        
+        $this->assertSame(
+            '<!DOCTYPE html><html><head><title>Welcome</title></head><body>Welcome, John</body></html>',
+            $renderer->renderTemplate($message->getHtml())
+        );
+    }
 }
