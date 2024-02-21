@@ -37,7 +37,8 @@ return [
         'default' => [
             'factory' => Symfony\DsnMailerFactory::class,
             'config' => [
-                'dsn' => 'smtp://user:pass@smtp.example.com:port',
+                'dsn' => 'null://null',
+                //'dsn' => 'smtp://user:pass@smtp.example.com:port',
 
                 // If the username, password or host contain
                 // any character considered special in a URI
