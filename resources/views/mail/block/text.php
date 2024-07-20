@@ -1,0 +1,1 @@
+<p><?= $view->esc($block->text()) ?></p>

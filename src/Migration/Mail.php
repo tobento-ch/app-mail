@@ -18,6 +18,8 @@ use Tobento\Service\Migration\ActionsInterface;
 use Tobento\Service\Migration\Actions;
 use Tobento\Service\Migration\Action\FilesCopy;
 use Tobento\Service\Migration\Action\FilesDelete;
+use Tobento\Service\Migration\Action\DirCopy;
+use Tobento\Service\Migration\Action\DirDelete;
 use Tobento\Service\Dir\DirsInterface;
 
 /**
@@ -26,9 +28,9 @@ use Tobento\Service\Dir\DirsInterface;
 class Mail implements MigrationInterface
 {
     /**
-     * @var array The files.
+     * @var array The config files.
      */
-    protected array $files;
+    protected array $configFiles;
     
     /**
      * Create a new Mail.
@@ -40,9 +42,9 @@ class Mail implements MigrationInterface
     ) {
         $vendor = realpath(__DIR__.'/../../');
         
-        $this->files = [
+        $this->configFiles = [
             $this->dirs->get('config') => [
-                $vendor.'/config/mail.php',
+                $vendor.'/resources/config/mail.php',
             ],
         ];
     }
@@ -64,11 +66,27 @@ class Mail implements MigrationInterface
      */
     public function install(): ActionsInterface
     {
+        $resources = realpath(__DIR__.'/../../').'/resources/';
+        
         return new Actions(
             new FilesCopy(
-                files: $this->files,
+                files: $this->configFiles,
                 type: 'config',
                 description: 'Mail config file.',
+            ),
+            new DirCopy(
+                dir: $resources.'views/mail/',
+                destDir: $this->dirs->get('views').'mail/',
+                name: 'Mail views',
+                type: 'views',
+                description: 'Mail views.',
+            ),
+            new DirCopy(
+                dir: $resources.'assets/mail/',
+                destDir: $this->dirs->get('public').'assets/mail/',
+                name: 'Mail asset files',
+                type: 'assets',
+                description: 'Mail asset files.',
             ),
         );
     }
@@ -82,10 +100,22 @@ class Mail implements MigrationInterface
     {
         return new Actions(
             new FilesDelete(
-                files: $this->files,
+                files: $this->configFiles,
                 type: 'config',
                 description: 'Mail config file.',
             ),
+            new DirDelete(
+                dir: $this->dirs->get('views').'mail/',
+                name: 'Mail views',
+                type: 'views',
+                description: 'Mail views.',
+            ),
+            new DirDelete(
+                dir: $this->dirs->get('public').'assets/mail/',
+                name: 'Mail asset files.',
+                type: 'assets',
+                description: 'Mail asset files.',
+            ),  
         );
     }
 }
