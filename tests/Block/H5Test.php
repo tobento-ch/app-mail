@@ -22,21 +22,21 @@ class H5Test extends TestCase
 {
     public function testThatImplementsBlockInterface()
     {
-        $block = H5::new(text: 'foo');
+        $block = new H5(text: 'foo');
         
         $this->assertInstanceof(BlockInterface::class, $block);
     }
     
     public function testRenderMethod()
     {
-        $block = H5::new(text: 'foo');
+        $block = new H5(text: 'foo');
         
         $this->assertSame('<h5>foo</h5>', $block->render(Factory::createView()));
     }
     
     public function testRenderMethodWithRenderReturnsEmptyString()
     {
-        $block = H5::new(text: 'foo', render: false);
+        $block = new H5(text: 'foo', render: false);
         
         $this->assertSame('', $block->render(Factory::createView()));
     }

@@ -22,14 +22,14 @@ class LinkTest extends TestCase
 {
     public function testThatImplementsBlockInterface()
     {
-        $block = Link::new(url: 'url', label: 'label');
+        $block = new Link(url: 'url', label: 'label');
         
         $this->assertInstanceof(BlockInterface::class, $block);
     }
     
     public function testRenderMethod()
     {
-        $block = Link::new(url: 'url', label: 'label');
+        $block = new Link(url: 'url', label: 'label');
         
         $this->assertStringContainsString(
             '<a href="url" target="_blank" rel="noopener">label</a>',
@@ -39,7 +39,7 @@ class LinkTest extends TestCase
     
     public function testRenderMethodWithAttributes()
     {
-        $block = Link::new(url: 'url', label: 'label', attributes: ['class' => 'foo']);
+        $block = new Link(url: 'url', label: 'label', attributes: ['class' => 'foo']);
         
         $this->assertStringContainsString(
             '<a class="foo" href="url" target="_blank" rel="noopener">label</a>',
@@ -49,7 +49,7 @@ class LinkTest extends TestCase
     
     public function testRenderMethodWithRenderReturnsEmptyString()
     {
-        $block = Link::new(url: 'url', label: 'label', render: false);
+        $block = new Link(url: 'url', label: 'label', render: false);
         
         $this->assertSame('', $block->render(Factory::createView()));
     }

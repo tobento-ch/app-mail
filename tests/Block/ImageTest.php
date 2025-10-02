@@ -23,14 +23,14 @@ class ImageTest extends TestCase
 {
     public function testThatImplementsBlockInterface()
     {
-        $block = Image::new(src: 'image.jpg');
+        $block = new Image(src: 'image.jpg');
         
         $this->assertInstanceof(BlockInterface::class, $block);
     }
     
     public function testRenderMethod()
     {
-        $block = Image::new(src: 'https://example.com/image.jpg', alt: 'foo');
+        $block = new Image(src: 'https://example.com/image.jpg', alt: 'foo');
         $view = Factory::createView();
         $view->with(name: 'message', value: new TemplateMessage('subject'));
         
@@ -42,7 +42,7 @@ class ImageTest extends TestCase
     
     public function testRenderMethodWithWidthAndHeight()
     {
-        $block = Image::new(src: 'https://example.com/image.jpg', alt: 'foo', width: 200, height: 300);
+        $block = new Image(src: 'https://example.com/image.jpg', alt: 'foo', width: 200, height: 300);
         $view = Factory::createView();
         $view->with(name: 'message', value: new TemplateMessage('subject'));
         
@@ -54,7 +54,7 @@ class ImageTest extends TestCase
     
     public function testRenderMethodWithRenderReturnsEmptyString()
     {
-        $block = Image::new(src: 'https://example.com/image.jpg', render: false);
+        $block = new Image(src: 'https://example.com/image.jpg', render: false);
         $view = Factory::createView();
         $view->with(name: 'message', value: new TemplateMessage('subject'));
         

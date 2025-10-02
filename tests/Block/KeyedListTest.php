@@ -22,14 +22,14 @@ class KeyedListTest extends TestCase
 {
     public function testThatImplementsBlockInterface()
     {
-        $block = KeyedList::new(items: []);
+        $block = new KeyedList(items: []);
         
         $this->assertInstanceof(BlockInterface::class, $block);
     }
     
     public function testRenderMethod()
     {
-        $block = KeyedList::new(items: ['foo' => 'Foo', 'bar' => 'Bar']);
+        $block = new KeyedList(items: ['foo' => 'Foo', 'bar' => 'Bar']);
         $html = $block->render(Factory::createView());
         
         $this->assertStringContainsString('foo', $html);
@@ -40,7 +40,7 @@ class KeyedListTest extends TestCase
     
     public function testRenderMethodWithRenderReturnsEmptyString()
     {
-        $block = KeyedList::new(items: ['foo' => 'Foo', 'bar' => 'Bar'], render: false);
+        $block = new KeyedList(items: ['foo' => 'Foo', 'bar' => 'Bar'], render: false);
         
         $this->assertSame('', $block->render(Factory::createView()));
     }

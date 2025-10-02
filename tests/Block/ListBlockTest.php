@@ -22,14 +22,14 @@ class ListBlockTest extends TestCase
 {
     public function testThatImplementsBlockInterface()
     {
-        $block = ListBlock::new(items: ['foo', 'bar']);
+        $block = new ListBlock(items: ['foo', 'bar']);
         
         $this->assertInstanceof(BlockInterface::class, $block);
     }
     
     public function testRenderMethod()
     {
-        $block = ListBlock::new(items: ['foo', 'bar']);
+        $block = new ListBlock(items: ['foo', 'bar']);
         $html = $block->render(Factory::createView());
         
         $this->assertStringContainsString('<li>foo</li>', $html);
@@ -38,7 +38,7 @@ class ListBlockTest extends TestCase
     
     public function testRenderMethodWithRenderReturnsEmptyString()
     {
-        $block = ListBlock::new(items: ['foo', 'bar'], render: false);
+        $block = new ListBlock(items: ['foo', 'bar'], render: false);
         
         $this->assertSame('', $block->render(Factory::createView()));
     }

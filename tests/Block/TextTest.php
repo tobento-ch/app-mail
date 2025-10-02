@@ -22,21 +22,21 @@ class TextTest extends TestCase
 {
     public function testThatImplementsBlockInterface()
     {
-        $block = Text::new(text: 'foo');
+        $block = new Text(text: 'foo');
         
         $this->assertInstanceof(BlockInterface::class, $block);
     }
     
     public function testRenderMethod()
     {
-        $block = Text::new(text: 'foo');
+        $block = new Text(text: 'foo');
         
         $this->assertSame('<p>foo</p>', $block->render(Factory::createView()));
     }
     
     public function testRenderMethodWithRenderReturnsEmptyString()
     {
-        $block = Text::new(text: 'foo', render: false);
+        $block = new Text(text: 'foo', render: false);
         
         $this->assertSame('', $block->render(Factory::createView()));
     }

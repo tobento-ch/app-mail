@@ -22,36 +22,36 @@ class HrTest extends TestCase
 {
     public function testThatImplementsBlockInterface()
     {
-        $block = Hr::new();
+        $block = new Hr();
         
         $this->assertInstanceof(BlockInterface::class, $block);
     }
     
     public function testRenderMethod()
     {
-        $block = Hr::new();
+        $block = new Hr();
         
         $this->assertSame('<hr class="line-s">', $block->render(Factory::createView()));
     }
     
     public function testRenderMethodWithSize()
     {
-        $this->assertSame('<hr class="line-s">', Hr::new(size: 's')->render(Factory::createView()));
-        $this->assertSame('<hr class="line-m">', Hr::new(size: 'm')->render(Factory::createView()));
-        $this->assertSame('<hr class="line-l">', Hr::new(size: 'l')->render(Factory::createView()));
-        $this->assertSame('<hr class="line-s">', Hr::new(size: 'unknown')->render(Factory::createView()));
+        $this->assertSame('<hr class="line-s">', new Hr(size: 's')->render(Factory::createView()));
+        $this->assertSame('<hr class="line-m">', new Hr(size: 'm')->render(Factory::createView()));
+        $this->assertSame('<hr class="line-l">', new Hr(size: 'l')->render(Factory::createView()));
+        $this->assertSame('<hr class="line-s">', new Hr(size: 'unknown')->render(Factory::createView()));
     }
     
     public function testRenderMethodWithAttributes()
     {
-        $block = Hr::new(attributes: ['class' => 'foo']);
+        $block = new Hr(attributes: ['class' => 'foo']);
         
         $this->assertSame('<hr class="foo line-s">', $block->render(Factory::createView()));
     }
     
     public function testRenderMethodWithRenderReturnsEmptyString()
     {
-        $block = Hr::new(render: false);
+        $block = new Hr(render: false);
         
         $this->assertSame('', $block->render(Factory::createView()));
     }

@@ -22,21 +22,21 @@ class HtmlTest extends TestCase
 {
     public function testThatImplementsBlockInterface()
     {
-        $block = Html::new(html: '<p>lorem</p>');
+        $block = new Html(html: '<p>lorem</p>');
         
         $this->assertInstanceof(BlockInterface::class, $block);
     }
     
     public function testRenderMethod()
     {
-        $block = Html::new(html: '<p>lorem</p>');
+        $block = new Html(html: '<p>lorem</p>');
         
         $this->assertSame('<p>lorem</p>', $block->render(Factory::createView()));
     }
     
     public function testRenderMethodWithRenderReturnsEmptyString()
     {
-        $block = Html::new(html: '<p>lorem</p>', render: false);
+        $block = new Html(html: '<p>lorem</p>', render: false);
         
         $this->assertSame('', $block->render(Factory::createView()));
     }

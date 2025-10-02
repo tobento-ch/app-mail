@@ -22,14 +22,14 @@ class TableTest extends TestCase
 {
     public function testThatImplementsBlockInterface()
     {
-        $block = Table::new();
+        $block = new Table();
         
         $this->assertInstanceof(BlockInterface::class, $block);
     }
     
     public function testRenderMethod()
     {
-        $block = Table::new(headers: ['foo'], rows: [['Foo']]);
+        $block = new Table(headers: ['foo'], rows: [['Foo']]);
         
         $this->assertSame(
             '<table><tr><th>foo</th></tr><tr><td>Foo</td></tr></table>',
@@ -39,7 +39,7 @@ class TableTest extends TestCase
     
     public function testRenderMethodWithHeadersOnly()
     {
-        $block = Table::new(headers: ['foo', 'bar']);
+        $block = new Table(headers: ['foo', 'bar']);
         
         $this->assertSame(
             '<table><tr><th>foo</th><th>bar</th></tr></table>',
@@ -49,7 +49,7 @@ class TableTest extends TestCase
     
     public function testRenderMethodWithRowsOnly()
     {
-        $block = Table::new(rows: [['Foo', 'Bar'], ['Baz', 'Lor']]);
+        $block = new Table(rows: [['Foo', 'Bar'], ['Baz', 'Lor']]);
         
         $this->assertSame(
             '<table><tr><td>Foo</td><td>Bar</td></tr><tr><td>Baz</td><td>Lor</td></tr></table>',
@@ -59,7 +59,7 @@ class TableTest extends TestCase
     
     public function testRenderMethodWithRenderReturnsEmptyString()
     {
-        $block = Table::new(headers: ['foo', 'bar'], render: false);
+        $block = new Table(headers: ['foo', 'bar'], render: false);
         
         $this->assertSame('', $block->render(Factory::createView()));
     }

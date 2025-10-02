@@ -22,21 +22,21 @@ class H1Test extends TestCase
 {
     public function testThatImplementsBlockInterface()
     {
-        $block = H1::new(text: 'foo');
+        $block = new H1(text: 'foo');
         
         $this->assertInstanceof(BlockInterface::class, $block);
     }
     
     public function testRenderMethod()
     {
-        $block = H1::new(text: 'foo');
+        $block = new H1(text: 'foo');
         
         $this->assertSame('<h1>foo</h1>', $block->render(Factory::createView()));
     }
     
     public function testRenderMethodWithRenderReturnsEmptyString()
     {
-        $block = H1::new(text: 'foo', render: false);
+        $block = new H1(text: 'foo', render: false);
         
         $this->assertSame('', $block->render(Factory::createView()));
     }

@@ -22,14 +22,14 @@ class ButtonTest extends TestCase
 {
     public function testThatImplementsBlockInterface()
     {
-        $block = Button::new(url: 'url', label: 'label');
+        $block = new Button(url: 'url', label: 'label');
         
         $this->assertInstanceof(BlockInterface::class, $block);
     }
     
     public function testRenderMethod()
     {
-        $block = Button::new(url: 'url', label: 'label');
+        $block = new Button(url: 'url', label: 'label');
         
         $this->assertStringContainsString(
             '<a href="url" class="button primary" target="_blank" rel="noopener">label</a>',
@@ -39,7 +39,7 @@ class ButtonTest extends TestCase
     
     public function testRenderMethodWithAttributes()
     {
-        $block = Button::new(url: 'url', label: 'label', attributes: ['class' => 'foo']);
+        $block = new Button(url: 'url', label: 'label', attributes: ['class' => 'foo']);
         
         $this->assertStringContainsString(
             '<a class="foo button primary" href="url" target="_blank" rel="noopener">label</a>',
@@ -49,7 +49,7 @@ class ButtonTest extends TestCase
     
     public function testRenderMethodWithRenderReturnsEmptyString()
     {
-        $block = Button::new(url: 'url', label: 'label', render: false);
+        $block = new Button(url: 'url', label: 'label', render: false);
         
         $this->assertSame('', $block->render(Factory::createView()));
     }
