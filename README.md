@@ -28,7 +28,7 @@ composer require tobento/app-mail
 
 ## Requirements
 
-- PHP 8.0 or greater
+- PHP 8.4 or greater
 
 # Documentation
 
@@ -55,7 +55,7 @@ use Tobento\Service\Mail\QueueHandlerInterface;
 use Tobento\Service\Mail\Symfony\EmailFactoryInterface;
 
 // Create the app
-$app = (new AppFactory())->createApp();
+$app = new AppFactory()->createApp();
 
 // Add directories:
 $app->dirs()
@@ -95,7 +95,7 @@ class SomeService
 {
     public function send(MailerInterface $mailer): void
     {
-        $message = (new Message())
+        $message = new Message()
             // you may set a from address overwriting 
             // the defaults defined in the mail config file
             ->from('from@example.com')
@@ -372,7 +372,7 @@ class SomeService
 {
     public function send(MailerInterface $mailer): void
     {
-        $message = (new TemplatedMessage())
+        $message = new TemplatedMessage()
             // you may set a from address overwriting 
             // the defaults defined in the mail config file
             ->from('from@example.com')
@@ -449,8 +449,8 @@ class SomeService
             
             // or using block classes:
             ->block(
-                Block\H1::new('Heading'),
-                Block\Text::new('Lorem ipsum'),
+                new Block\H1('Heading'),
+                new Block\Text('Lorem ipsum'),
             );
 
         $mailer->send($message);
@@ -467,7 +467,7 @@ use Tobento\App\Mail\TemplatedMessage;
 
 $amount = 5;
 
-$message = (new TemplatedMessage())
+$message = new TemplatedMessage()
     ->txt("Amount paid: {$amount}", render: $amount > 0);
 ```
 
@@ -488,7 +488,7 @@ class SomeService
 {
     public function send(MailerInterface $mailer): void
     {
-        $message = (new Message())
+        $message = new Message()
             ->to('to@example.com')
             ->subject('Subject')
             ->text('Lorem Ipsum')
