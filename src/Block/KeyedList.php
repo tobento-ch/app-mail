@@ -36,21 +36,6 @@ class KeyedList implements BlockInterface
     ) {}
     
     /**
-     * Create a new instance.
-     *
-     * @param array $items
-     * @param bool $render
-     * @return static
-     */
-    public static function new(
-        array $items = [],
-        array $rows = [],
-        bool $render = true
-    ): static {
-        return new static($items, $render);
-    }
-    
-    /**
      * Returns the html of the block. MUST be escaped.
      *
      * @param ViewInterface $view

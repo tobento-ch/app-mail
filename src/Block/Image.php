@@ -44,28 +44,6 @@ class Image implements BlockInterface
         protected null|string $mimeType = null,
         protected bool $render = true
     ) {}
-    
-    /**
-     * Create a new instance.
-     *
-     * @param string $url
-     * @param string $alt
-     * @param null|int $width
-     * @param null|int $height
-     * @param null|string $mimeType
-     * @param bool $render
-     * @return static
-     */
-    public static function new(
-        string|File|StreamInterface $src,
-        string $alt = '',
-        null|int $width = null,
-        null|int $height = null,
-        null|string $mimeType = null,
-        bool $render = true
-    ): static {
-        return new static($src, $alt, $width, $height, $mimeType, $render);
-    }
 
     /**
      * Returns the tag.

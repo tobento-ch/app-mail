@@ -35,22 +35,6 @@ class Hr implements BlockInterface
         protected array $attributes = [],
         protected bool $render = true
     ) {}
-    
-    /**
-     * Create a new instance.
-     *
-     * @param string $size
-     * @param array $attributes
-     * @param bool $render
-     * @return static
-     */
-    public static function new(
-        string $size = 's',
-        array $attributes = [],
-        bool $render = true
-    ): static {
-        return new static($size, $attributes, $render);
-    }
 
     /**
      * Returns the hr tag.

@@ -34,20 +34,6 @@ class Text implements BlockInterface
     ) {}
     
     /**
-     * Create a new instance.
-     *
-     * @param string|Stringable $text
-     * @param bool $render
-     * @return static
-     */
-    public static function new(
-        string|Stringable $text,
-        bool $render = true
-    ): static {
-        return new static($text, $render);
-    }
-    
-    /**
      * Returns the text.
      *
      * @return string

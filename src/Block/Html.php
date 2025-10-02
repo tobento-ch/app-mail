@@ -33,20 +33,6 @@ class Html implements BlockInterface
     ) {}
     
     /**
-     * Create a new instance.
-     *
-     * @param string|Stringable $html
-     * @param bool $render
-     * @return static
-     */
-    public static function new(
-        string|Stringable $html,
-        bool $render = true
-    ): static {
-        return new static($html, $render);
-    }
-    
-    /**
      * Returns the html of the block. MUST be escaped.
      *
      * @param ViewInterface $view

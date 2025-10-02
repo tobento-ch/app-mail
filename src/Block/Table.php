@@ -38,22 +38,6 @@ class Table implements BlockInterface
     ) {}
     
     /**
-     * Create a new instance.
-     *
-     * @param array $headers
-     * @param array $rows
-     * @param bool $render
-     * @return static
-     */
-    public static function new(
-        array $headers = [],
-        array $rows = [],
-        bool $render = true
-    ): static {
-        return new static($headers, $rows, $render);
-    }
-    
-    /**
      * Returns the html of the block. MUST be escaped.
      *
      * @param ViewInterface $view
@@ -120,6 +104,7 @@ class Table implements BlockInterface
      * @param mixed $value
      * @param string|int $name
      * @return string
+     * @psalm-suppress PossiblyUnusedParam
      */
     public function renderValue(ViewInterface $view, mixed $value, string|int $name): string
     {

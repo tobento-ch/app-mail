@@ -39,24 +39,6 @@ class Link implements BlockInterface
         protected array $attributes = [],
         protected bool $render = true
     ) {}
-    
-    /**
-     * Create a new instance.
-     *
-     * @param string $url
-     * @param string $label
-     * @param array $attributes
-     * @param bool $render
-     * @return static
-     */
-    public static function new(
-        string $url,
-        string $label,
-        array $attributes = [],
-        bool $render = true
-    ): static {
-        return new static($url, $label, $attributes, $render);
-    }
 
     /**
      * Returns the link tag.
