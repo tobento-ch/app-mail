@@ -372,7 +372,7 @@ class SomeService
 {
     public function send(MailerInterface $mailer): void
     {
-        $message = new TemplatedMessage()
+        $message = new TemplatedMessage(locale: 'en')
             // you may set a from address overwriting 
             // the defaults defined in the mail config file
             ->from('from@example.com')
