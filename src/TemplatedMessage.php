@@ -32,13 +32,26 @@ class TemplatedMessage implements MessageInterface
     
     /**
      * Create a new TemplatedMessage.
+     *
+     * @param string $locale
      */
-    public function __construct()
-    {
+    public function __construct(
+        protected string $locale = 'en'
+    ) {
         $this->to = new Addresses();
         $this->cc = new Addresses();
         $this->bcc = new Addresses();
         $this->parameters = new Parameters();
+    }
+    
+    /**
+     * Returns the locale.
+     *
+     * @return string
+     */
+    public function getLocale(): string
+    {
+        return $this->locale;
     }
     
     /**
@@ -63,6 +76,8 @@ class TemplatedMessage implements MessageInterface
     protected function getTemplateData(): array
     {
         return [
+            'locale' => $this->getLocale(),
+            'htmlLang' => str_replace('_', '-', $this->getLocale()),
             'blocks' => $this->getBlocks(),
         ];
     }
