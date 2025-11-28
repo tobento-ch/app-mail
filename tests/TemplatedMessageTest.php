@@ -154,7 +154,15 @@ class TemplatedMessageTest extends TestCase
         $message = new TemplatedMessage();
         $this->assertInstanceof(TemplateInterface::class, $message->getHtml());
         $this->assertSame('mail/templated', $message->getHtml()->name());
-        $this->assertSame(['blocks' => []], $message->getHtml()->data());
+        $this->assertSame(['locale' => 'en', 'htmlLang' => 'en', 'blocks' => []], $message->getHtml()->data());
+    }
+    
+    public function testHtmlMethodReturnsTemplateWithSpecifiedLocale()
+    {
+        $message = new TemplatedMessage(locale: 'de_CH');
+        $this->assertInstanceof(TemplateInterface::class, $message->getHtml());
+        $this->assertSame('mail/templated', $message->getHtml()->name());
+        $this->assertSame(['locale' => 'de_CH', 'htmlLang' => 'de-CH', 'blocks' => []], $message->getHtml()->data());
     }
     
     public function testHtmlMethodReturnsTemplateWithAddedBlocks()
@@ -233,6 +241,8 @@ class TemplatedMessageTest extends TestCase
                 'html' => [
                     'name' => 'mail/templated',
                     'data' => [
+                        'locale' => 'en',
+                        'htmlLang' => 'en',
                         'blocks' => [],
                     ],
                 ],
